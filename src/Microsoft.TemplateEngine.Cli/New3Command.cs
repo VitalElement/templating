@@ -769,7 +769,7 @@ namespace Microsoft.TemplateEngine.Cli
         {
             Reporter.Output.WriteLine(LocalizableStrings.CommandDescription);
             Reporter.Output.WriteLine();
-            Reporter.Output.WriteLine(string.Format(LocalizableStrings.Version, GitInfo.PackageVersion));
+            //Reporter.Output.WriteLine(string.Format(LocalizableStrings.Version, GitInfo.PackageVersion));
             Reporter.Output.WriteLine(string.Format(LocalizableStrings.CommitHash, GitInfo.CommitHash));
         }
 
