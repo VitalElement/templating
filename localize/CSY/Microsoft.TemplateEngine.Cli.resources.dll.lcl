@@ -41,10 +41,13 @@
       </Item>
       <Item ItemId=";AddProjToSlnPostActionSucceeded" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Successfully added]A;    project(s): {0}]A;    to solution file: {1}]]></Val>
+          <Val><![CDATA[Successfully added]D;]A;    project(s): {0}]D;]A;    to solution file: {1}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Projekt (projekty): {0}]A;    se úspěšně přidal]A;    do souboru řešení: {1}]]></Val>
+            <Val><![CDATA[Úspěšně přidáno:]D;]A;    projekt (projekty): {0}]D;]A;    do souboru řešení: {1}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Successfully added]A;    project(s): {0}]A;    to solution file: {1}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -131,10 +134,13 @@
       </Item>
       <Item ItemId=";AddRefPostActionSucceeded" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Successfully added]A;    reference: {0}]A;    to project file: {1}]]></Val>
+          <Val><![CDATA[Successfully added]D;]A;    reference: {0}]D;]A;    to project file: {1}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Úspěšně přidáno:]A;    odkaz: {0}]A;    do souboru projektu: {1}]]></Val>
+            <Val><![CDATA[Úspěšně přidáno:]D;]A;    odkaz: {0}]D;]A;    do souboru projektu: {1}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Successfully added]A;    reference: {0}]A;    to project file: {1}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -176,10 +182,13 @@
       </Item>
       <Item ItemId=";AliasCommandAfterExpansion" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[After expanding aliases, the command is:]A;    dotnet {0}]]></Val>
+          <Val><![CDATA[After expanding aliases, the command is:]D;]A;    dotnet {0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Po rozbalení aliasů příkaz zní:]A;    dotnet {0}]]></Val>
+            <Val><![CDATA[Po rozbalení aliasů má příkaz tuto podobu:]D;]A;    dotnet {0}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[After expanding aliases, the command is:]A;    dotnet {0}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -284,10 +293,13 @@
       </Item>
       <Item ItemId=";AliasShowErrorUnknownAlias" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Unknown alias name '{0}'.]A;Run 'dotnet {1} --show-aliases' with no args to show all aliases.]]></Val>
+          <Val><![CDATA[Unknown alias name '{0}'.]D;]A;Run 'dotnet {1} --show-aliases' with no args to show all aliases.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Neznámý název aliasu {0}.]A;Pokud si chcete zobrazit všechny aliasy, spusťte příkaz dotnet {1} --show-aliases bez argumentů.]]></Val>
+            <Val><![CDATA[Neznámý název aliasu {0}.]D;]A;Pokud chcete zobrazit všechny aliasy, spusťte příkaz dotnet {1} --show-aliases bez argumentů.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Unknown alias name '{0}'.]A;Run 'dotnet {1} --show-aliases' with no args to show all aliases.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -314,6 +326,15 @@
           <Val><![CDATA[First argument of an alias value must begin with a letter or digit.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[První argument hodnoty aliasu musí začínat písmenem nebo číslicí.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";AllUpdatesApplyPrompt" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Apply updates ([A]5D;ll|[N]5D;one|[P]5D;rompt)?]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Použít aktualizace ([V]5D;šechny|[Ž]5D;ádné|[D]5D;otaz)?]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -354,6 +375,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";ApplyUpdatesInvalidChoiceResponse" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Invalid choice...]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Neplatná volba...]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";ArgsFileNotFound" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[The specified extra args file does not exist: {0}.]]></Val>
@@ -386,6 +416,24 @@
           <Val><![CDATA[Author: {0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Autor: {0}]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";Authoring_AmbiguousBestPrecedence" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Equal highest precedence values among the best template matches prevented unambiguously choosing a template to invoke.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Stejná hodnota nejvyšší priority u šablon s nejlepší shodou neumožnila jednoznačně zvolit šablonu, která se má vyvolat.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";Authoring_AmbiguousChoiceParameterValue" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An ambiguous choice parameter value prevented unambiguously choosing a template to invoke.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Nejednoznačná hodnota parametru volby neumožnila jednoznačně zvolit šablonu, která se má vyvolat.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -446,10 +494,13 @@
       </Item>
       <Item ItemId=";CommandOutput" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Output from command:]A;{0}]]></Val>
+          <Val><![CDATA[Output from command:]D;]A;{0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Výstup příkazu:]A;{0}]]></Val>
+            <Val><![CDATA[Výstup příkazu:]D;]A;{0}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Output from command:]A;{0}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -458,6 +509,15 @@
           <Val><![CDATA[Command succeeded.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Příkaz se provedl úspěšně.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";CommitHash" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[ Commit Hash: {0}]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[ Potvrzení hodnoty hash: {0}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -518,10 +578,13 @@
       </Item>
       <Item ItemId=";CreateFailed" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Template "{0}" could not be created.]A;{1}]]></Val>
+          <Val><![CDATA[Template "{0}" could not be created.]D;]A;{1}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nepovedlo se vytvořit šablonu {0}.]A;{1}]]></Val>
+            <Val><![CDATA[Nepovedlo se vytvořit šablonu {0}.]D;]A;{1}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Template "{0}" could not be created.]A;{1}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -548,6 +611,15 @@
           <Val><![CDATA[Default: {0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Výchozí: {0}]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";DefaultValuePlusSwitchWithoutValueDefault" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Default: {0} / (*) {1}]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Výchozí: {0} / (*) {1}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -590,10 +662,13 @@
       </Item>
       <Item ItemId=";ExtraArgsCommandAfterExpansion" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[After expanding the extra args files, the command is:]A;    dotnet {0}]]></Val>
+          <Val><![CDATA[After expanding the extra args files, the command is:]D;]A;    dotnet {0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Po rozbalení dodatečných souborů argumentů příkaz zní:]A;    dotnet {0}]]></Val>
+            <Val><![CDATA[Po rozbalení dodatečných souborů argumentů má příkaz tuto podobu:]D;]A;    dotnet {0}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[After expanding the extra args files, the command is:]A;    dotnet {0}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -662,10 +737,13 @@
       </Item>
       <Item ItemId=";InstallFailed" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA["{0}" could not be installed.]A;{1}.]]></Val>
+          <Val><![CDATA["{0}" could not be installed.]D;]A;{1}.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Produkt {0} se nepovedlo nainstalovat.]A;{1}]]></Val>
+            <Val><![CDATA[Produkt {0} se nepovedlo nainstalovat.]D;]A;{1}.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA["{0}" could not be installed.]A;{1}.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -683,6 +761,15 @@
           <Val><![CDATA["{0}" was installed successfully.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Produkt {0} se úspěšně nainstaloval.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";InstalledItems" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Currently installed items:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Aktuálně nainstalované položky:]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -707,19 +794,25 @@
       </Item>
       <Item ItemId=";InvalidParameterDefault" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[{0} {1}]A;    The default value '{1}' is not a valid value for {0}.]]></Val>
+          <Val><![CDATA[{0} {1}]D;]A;    The default value '{1}' is not a valid value for {0}.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[{0} {1}]A;    Výchozí hodnota {1} není platnou hodnotou pro {0}.]]></Val>
+            <Val><![CDATA[{0} {1}]D;]A;    Výchozí hodnota {1} není platnou hodnotou pro {0}.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[{0} {1}]A;    The default value '{1}' is not a valid value for {0}.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";InvalidParameterDetail" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[{0} {1}]A;    '{1}' is not a valid value for {0} ({2}).]]></Val>
+          <Val><![CDATA[{0} {1}]D;]A;    '{1}' is not a valid value for {0} ({2}).]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[{0} {1}]A;    {1} není platná hodnota pro {0} ({2}).]]></Val>
+            <Val><![CDATA[{0} {1}]D;]A;    {1} není platná hodnota pro {0} ({2}).]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[{0} {1}]A;    '{1}' is not a valid value for {0} ({2}).]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -752,10 +845,13 @@
       </Item>
       <Item ItemId=";LanguageParameter" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Specifies the language of the template to create.]]></Val>
+          <Val><![CDATA[Filters templates based on language and specifies the language of the template to create.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Určuje jazyk vytvářené šablony.]]></Val>
+            <Val><![CDATA[Vyfiltruje šablony založené na jazyce a určí jazyk šablony, která se má vytvořit.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Specifies the language of the template to create.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -876,6 +972,24 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";NoUpdatesFound" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[No updates found.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Nenašly se žádné aktualizace.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";NuGetSourceHelp" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Specifies a NuGet source to use during install.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Určuje zdroj NuGet, který se použije při instalaci.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";OptionVariantAlreadyDefined" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Option variant {0} for canonical {1} was already defined for canonical {2}.]]></Val>
@@ -953,6 +1067,15 @@
           <Val><![CDATA[Parent]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Nadřazený prvek]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";PartialTemplateMatchSwitchesNotValidForAllMatches" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Some partially matched templates may not support these input switches:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Některé částečně odpovídající šablony nemusí podporovat tyto přepínače vstupu:]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1067,12 +1190,12 @@
       </Item>
       <Item ItemId=";RunHelpForInformationAboutAcceptedParameters" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Run dotnet {0} --help for usage information.]A;See https://aka.ms/dotnet-install-templates to learn how to install additional template packs.]]></Val>
+          <Val><![CDATA[Run dotnet {0} --help for usage information.]D;]A;See https://aka.ms/dotnet-install-templates to learn how to install additional template packs.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Informace o použití si zobrazíte pomocí příkazu dotnet {0} --help.]A;Informace o instalaci dalších balíčků šablon najdete na adrese https://aka.ms/dotnet-install-templates.]]></Val>
+            <Val><![CDATA[Informace o použití si zobrazíte pomocí příkazu dotnet {0} --help.]D;]A;Informace o instalaci dalších balíčků šablon najdete na adrese https://aka.ms/dotnet-install-templates.]]></Val>
           </Tgt>
           <Prev Cat="Text">
-            <Val><![CDATA[Run dotnet {0} --help for usage information.]]></Val>
+            <Val><![CDATA[Run dotnet {0} --help for usage information.]A;See https://aka.ms/dotnet-install-templates to learn how to install additional template packs.]]></Val>
           </Prev>
         </Str>
         <Disp Icon="Str" />
@@ -1091,6 +1214,15 @@
           <Val><![CDATA[Running 'dotnet restore' on {0}...]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Na {0} se spouští příkaz dotnet restore...]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";SettingsReadError" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Error reading the installed configuration, file may be corrupted. If this problem persists, try resetting with the `--debug:reinit' flag]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Chyba při čtení nainstalované konfigurace. Soubor může být poškozený. Pokud problém potrvá, zkuste proces resetovat s příznakem '--debug:reinit'.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1127,6 +1259,33 @@
           <Val><![CDATA[Filters templates based on available types. Predefined values are "project", "item" or "other".]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Vyfiltruje šablony podle dostupných typů. Předdefinované hodnoty jsou project, item nebo other.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";SingleTemplateGroupPartialMatchSwitchesNotValidForAllMatches" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The following parameter(s) or their value(s) are not valid in combination with other supplied parameters or their values:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Následující parametry nebo jejich hodnoty nejsou platné ve spojení s jinými zadanými parametry nebo jejich hodnotami:]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";SingleUpdateApplyPrompt" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[{0} : update ([Y]5D;es|[N]5D;o)?]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[{0} : aktualizovat ([Y]5D;Ano|[N]5D;Ne)?]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";SwitchWithoutValueDefaultFootnote" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[* Indicates the value used if the switch is provided without a value.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[* Určuje hodnotu, která se použila, pokud byl zadán přepínač bez hodnoty.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1172,6 +1331,15 @@
           <Val><![CDATA[{0} matches the specified name, but has been excluded by the --type parameter. Remove or change the --type parameter to use that template.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Šablona {0} odpovídá zadanému názvu, ale parametr --type ji vyloučil. Pokud tuto šablonu chcete použít, odeberte nebo změňte parametr --type.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";TemplateUpdateError" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An error occured updating templates for: {0}]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Došlo k chybě při aktualizaci šablon pro: {0}.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1239,6 +1407,24 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";UpdateCheckError" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An error occured checking for {0} template updates.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Došlo k chybě při hledání aktualizací šablon {0}.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";UpdateCheckerNotAvailable" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[No update checker(s) for the following:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Žádné kontroly aktualizací pro následující:]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";UpdateHelp" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Update matching templates.]]></Val>
@@ -1248,11 +1434,29 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";UpdatesAvailableListHeader" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Updates are available for the following:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Aktualizace jsou dostupné pro následující:]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";ValueSpecifiedForValuelessParameter" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Value specified for valueless parameter: {0}.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Pro parametr bez hodnoty se zadala hodnota: {0}]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";Version" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[ Version:     {0}]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[ Verze:     {0}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1281,7 +1485,7 @@
     <Disp Icon="Ver" Disp="true" LocTbl="false" Path=" \ ;Version \ 8 \ 0" />
     <Item ItemId=";AssemblyVersion" ItemType="0" PsrId="211" Leaf="true">
       <Str Cat="Text" DevLk="true">
-        <Val><![CDATA[1.0.0.300]]></Val>
+        <Val><![CDATA[1.0.1.45932]]></Val>
       </Str>
       <Disp Icon="Str" />
     </Item>
@@ -1314,7 +1518,7 @@
     </Item>
     <Item ItemId=";FileVersion" ItemType="0" PsrId="211" Leaf="true">
       <Str Cat="Text" DevLk="true">
-        <Val><![CDATA[1.0.0.300]]></Val>
+        <Val><![CDATA[1.0.1.45932]]></Val>
       </Str>
       <Disp Icon="Str" />
     </Item>
@@ -1326,10 +1530,13 @@
     </Item>
     <Item ItemId=";LegalCopyright" ItemType="0" PsrId="211" Leaf="true">
       <Str Cat="Text">
-        <Val><![CDATA[Copyright © Microsoft Corporation]]></Val>
+        <Val><![CDATA[© Microsoft Corporation. All rights reserved.]]></Val>
         <Tgt Cat="Text" Stat="Loc" Orig="New">
-          <Val><![CDATA[Copyright © Microsoft Corporation]]></Val>
+          <Val><![CDATA[© Microsoft Corporation. Všechna práva vyhrazena.]]></Val>
         </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Copyright © Microsoft Corporation]]></Val>
+        </Prev>
       </Str>
       <Disp Icon="Str" />
     </Item>
@@ -1350,7 +1557,7 @@
     </Item>
     <Item ItemId=";ProductVersion" ItemType="0" PsrId="211" Leaf="true">
       <Str Cat="Text" DevLk="true">
-        <Val><![CDATA[1.0.0-beta2-20170725-300+300.8433c1579f25dbb84e0b0901e75b6a488e80a9f6]]></Val>
+        <Val><![CDATA[1.0.1-beta3-20180316-1487702+1868.d7f133f499ef5f3c6550e0d8a8f197fff43a3767]]></Val>
       </Str>
       <Disp Icon="Str" />
     </Item>

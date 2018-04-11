@@ -95,23 +95,17 @@ namespace Microsoft.TemplateEngine.Cli.CommandParsing
                     aliasesForParam.Add(shortVersion);
                 }
 
-                if (string.Equals(parameter.DataType, "choice", StringComparison.OrdinalIgnoreCase))
+                if (parameter is IAllowDefaultIfOptionWithoutValue parameterWithNoValueDefault
+                    && !string.IsNullOrEmpty(parameterWithNoValueDefault.DefaultIfOptionWithoutValue))
                 {
+                    // This switch can be provided with or without a value.
+                    // If the user doesn't specify a value, it gets the value of DefaultIfOptionWithoutValue
                     option = Create.Option(string.Join("|", aliasesForParam), parameter.Documentation,
-                                            Accept.ExactlyOneArgument());
-                                                //.WithSuggestionsFrom(parameter.Choices.Keys.ToArray())
-                                                // Don't give this a default value, otherwise the switch without a value is valid (gets set to the default)
-                                                // User should have to give a value, or not specify the switch - which causes the default to be applied.
-                }
-                else if (string.Equals(parameter.DataType, "bool", StringComparison.OrdinalIgnoreCase))
-                {
-                    option = Create.Option(string.Join("|", aliasesForParam), parameter.Documentation,
-                                        Accept.ZeroOrOneArgument()
-                                            .WithSuggestionsFrom(new[] { "true", "false" }));
-
+                                            Accept.ZeroOrOneArgument());
                 }
                 else
                 {
+                    // User must provide a value if this switch is specified.
                     option = Create.Option(string.Join("|", aliasesForParam), parameter.Documentation,
                                         Accept.ExactlyOneArgument());
                 }
@@ -136,6 +130,7 @@ namespace Microsoft.TemplateEngine.Cli.CommandParsing
                     Create.Option("-o|--output", LocalizableStrings.OutputPath, Accept.ExactlyOneArgument()),
                     Create.Option("-i|--install", LocalizableStrings.InstallHelp, Accept.OneOrMoreArguments()),
                     Create.Option("-u|--uninstall", LocalizableStrings.UninstallHelp, Accept.ZeroOrMoreArguments()),
+                    Create.Option("--nuget-source", LocalizableStrings.NuGetSourceHelp, Accept.OneOrMoreArguments()),
                     Create.Option("--type", LocalizableStrings.ShowsFilteredTemplates, Accept.ExactlyOneArgument()),
                     Create.Option("--force", LocalizableStrings.ForcesTemplateCreation, Accept.NoArguments()),
                     Create.Option("-lang|--language", LocalizableStrings.LanguageParameter,
@@ -196,6 +191,8 @@ namespace Microsoft.TemplateEngine.Cli.CommandParsing
                     Create.Option("--debug:emit-telemetry", string.Empty, Accept.NoArguments()),
                     Create.Option("--debug:custom-hive", string.Empty, Accept.ExactlyOneArgument()),
                     Create.Option("--debug:version", string.Empty, Accept.NoArguments()),
+
+                    Create.Option("--dev:install", string.Empty, Accept.NoArguments()),
 
                     Create.Option("--trace:authoring", string.Empty, Accept.NoArguments()),
                     Create.Option("--trace:install", string.Empty, Accept.NoArguments()),

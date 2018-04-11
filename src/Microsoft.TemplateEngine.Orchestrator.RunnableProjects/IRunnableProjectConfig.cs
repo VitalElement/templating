@@ -23,7 +23,7 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
 
         string Name { get; }
 
-        string ShortName { get; }
+        IReadOnlyList<string> ShortNameList { get; }
 
         string Author { get; }
 
@@ -52,5 +52,7 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
         void Evaluate(IParameterSet parameters, IVariableCollection rootVariableCollection, IFileSystemInfo configFile);
 
         IReadOnlyDictionary<string, IBaselineInfo> BaselineInfo { get; }
+
+        bool HasScriptRunningPostActions { get; set; }
     }
 }

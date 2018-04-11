@@ -33,7 +33,7 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
         };
         private static readonly string[] CopyOnlyPatternDefaults = new[] { "**/node_modules/**" };
 
-        private static readonly Dictionary<string, string> RenameDefaults = new Dictionary<string, string>();
+        private static readonly Dictionary<string, string> RenameDefaults = new Dictionary<string, string>(StringComparer.Ordinal);
 
         public SimpleConfigModel()
         {
@@ -64,7 +64,7 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
 
         public string Name { get; set; }
 
-        public string ShortName { get; set; }
+        public IReadOnlyList<string> ShortNameList { get; set; }
 
         public string SourceName { get; set; }
 
@@ -78,6 +78,8 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
         public string GeneratorVersions { get; set; }
 
         public IReadOnlyDictionary<string, IBaselineInfo> BaselineInfo { get; set; }
+
+        public bool HasScriptRunningPostActions { get; set; }
 
         private IReadOnlyDictionary<string, string> _tagsDeprecated;
 
@@ -101,7 +103,7 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                         defaultValue = tagParameter.Value.DefaultValue;
                     }
 
-                    ICacheTag cacheTag = new CacheTag(tagParameter.Value.Description, tagParameter.Value.Choices, defaultValue);
+                    ICacheTag cacheTag = new CacheTag(tagParameter.Value.Description, tagParameter.Value.Choices, defaultValue, tagParameter.Value.DefaultIfOptionWithoutValue);
                     tags.Add(tagParameter.Key, cacheTag);
                 }
 
@@ -152,7 +154,7 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                     {
                         if (symbol.Value is ParameterSymbol param && param.DataType != "choice")
                         {
-                            ICacheParameter cacheParam = new CacheParameter(param.DataType, param.DefaultValue, param.Description);
+                            ICacheParameter cacheParam = new CacheParameter(param.DataType, param.DefaultValue, param.Description, param.DefaultIfOptionWithoutValue);
                             cacheParameters.Add(symbol.Key, cacheParam);
                         }
                     }
@@ -237,6 +239,7 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                                 if (string.Equals(symbol.Value.Type, ParameterSymbol.TypeName, StringComparison.Ordinal))
                                 {
                                     parameters[symbol.Key].Choices = ((ParameterSymbol)symbol.Value).Choices;
+                                    parameters[symbol.Key].DefaultIfOptionWithoutValue = ((ParameterSymbol)symbol.Value).DefaultIfOptionWithoutValue;
                                 }
                             }
                         }
@@ -280,12 +283,11 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
 
                     foreach (ExtendedFileSource source in Sources)
                     {
-                        IReadOnlyList<string> includePattern = JTokenToCollection(source.Include, SourceFile, IncludePatternDefaults);
-                        IReadOnlyList<string> excludePattern = JTokenToCollection(source.Exclude, SourceFile, ExcludePatternDefaults);
-                        IReadOnlyList<string> copyOnlyPattern = JTokenToCollection(source.CopyOnly, SourceFile, CopyOnlyPatternDefaults);
+                        IReadOnlyList<string> includePattern = JTokenAsFilenameToReadOrArrayToCollection(source.Include, SourceFile, IncludePatternDefaults);
+                        IReadOnlyList<string> excludePattern = JTokenAsFilenameToReadOrArrayToCollection(source.Exclude, SourceFile, ExcludePatternDefaults);
+                        IReadOnlyList<string> copyOnlyPattern = JTokenAsFilenameToReadOrArrayToCollection(source.CopyOnly, SourceFile, CopyOnlyPatternDefaults);
                         FileSourceEvaluable topLevelEvaluable = new FileSourceEvaluable(includePattern, excludePattern, copyOnlyPattern);
-                        IReadOnlyDictionary<string, string> renamePatterns = source.Rename ?? RenameDefaults;
-
+                        IReadOnlyDictionary<string, string> renamePatterns = new Dictionary<string, string>(source.Rename ?? RenameDefaults, StringComparer.Ordinal);
                         FileSourceMatchInfo matchInfo = new FileSourceMatchInfo(
                             source.Source ?? "./",
                             source.Target ?? "./",
@@ -306,7 +308,7 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                             "./",
                             "./",
                             topLevelEvaluable,
-                            new Dictionary<string, string>(),
+                            new Dictionary<string, string>(StringComparer.Ordinal),
                             new List<FileSourceEvaluable>());
                         sources.Add(matchInfo);
                     }
@@ -382,6 +384,10 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                 {
                     List<SpecialOperationConfigParams> defaultSpecials = new List<SpecialOperationConfigParams>
                     {
+                        new SpecialOperationConfigParams("**/*.js", "//", "C++", ConditionalType.CLineComments),
+                        new SpecialOperationConfigParams("**/*.es", "//", "C++", ConditionalType.CLineComments),
+                        new SpecialOperationConfigParams("**/*.es6", "//", "C++", ConditionalType.CLineComments),
+                        new SpecialOperationConfigParams("**/*.ts", "//", "C++", ConditionalType.CLineComments),
                         new SpecialOperationConfigParams("**/*.json", "//", "C++", ConditionalType.CLineComments),
                         new SpecialOperationConfigParams("**/*.jsonld", "//", "C++", ConditionalType.CLineComments),
                         new SpecialOperationConfigParams("**/*.hjson", "//", "C++", ConditionalType.CLineComments),
@@ -403,16 +409,23 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                         new SpecialOperationConfigParams("**/*.css.min", "/*", "C++", ConditionalType.CBlockComments),
                         new SpecialOperationConfigParams("**/*.css", "/*", "C++", ConditionalType.CBlockComments),
                         new SpecialOperationConfigParams("**/*.cshtml", "@*", "C++", ConditionalType.Razor),
+                        new SpecialOperationConfigParams("**/*.vbhtml", "@*", "VB", ConditionalType.Razor),
                         new SpecialOperationConfigParams("**/*.cs", "//", "C++", ConditionalType.CNoComments),
                         new SpecialOperationConfigParams("**/*.fs", "//", "C++", ConditionalType.CNoComments),
+                        new SpecialOperationConfigParams("**/*.c", "//", "C++", ConditionalType.CNoComments),
                         new SpecialOperationConfigParams("**/*.cpp", "//", "C++", ConditionalType.CNoComments),
+                        new SpecialOperationConfigParams("**/*.cxx", "//", "C++", ConditionalType.CNoComments),
                         new SpecialOperationConfigParams("**/*.h", "//", "C++", ConditionalType.CNoComments),
                         new SpecialOperationConfigParams("**/*.hpp", "//", "C++", ConditionalType.CNoComments),
+                        new SpecialOperationConfigParams("**/*.hxx", "//", "C++", ConditionalType.CNoComments),
                         new SpecialOperationConfigParams("**/*.*proj", "<!--/", "MSBUILD", ConditionalType.MSBuild),
                         new SpecialOperationConfigParams("**/*.*proj.user", "<!--/", "MSBUILD", ConditionalType.MSBuild),
+                        new SpecialOperationConfigParams("**/*.pubxml", "<!--/", "MSBUILD", ConditionalType.MSBuild),
+                        new SpecialOperationConfigParams("**/*.pubxml.user", "<!--/", "MSBUILD", ConditionalType.MSBuild),
                         new SpecialOperationConfigParams("**/*.msbuild", "<!--/", "MSBUILD", ConditionalType.MSBuild),
                         new SpecialOperationConfigParams("**/*.targets", "<!--/", "MSBUILD", ConditionalType.MSBuild),
                         new SpecialOperationConfigParams("**/*.props", "<!--/", "MSBUILD", ConditionalType.MSBuild),
+                        new SpecialOperationConfigParams("**/*.svg", "<!--", "C++", ConditionalType.Xml),
                         new SpecialOperationConfigParams("**/*.*htm", "<!--", "C++", ConditionalType.Xml),
                         new SpecialOperationConfigParams("**/*.*html", "<!--", "C++", ConditionalType.Xml),
                         new SpecialOperationConfigParams("**/*.jsp", "<!--", "C++", ConditionalType.Xml),
@@ -441,6 +454,9 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                         new SpecialOperationConfigParams("**/*.jsx", "{/*", "C++", ConditionalType.JsxBlockComment),
                         new SpecialOperationConfigParams("**/*.tsx", "{/*", "C++", ConditionalType.JsxBlockComment),
                         new SpecialOperationConfigParams("**/*.xml", "<!--", "C++", ConditionalType.Xml),
+                        new SpecialOperationConfigParams("**/*.resx", "<!--", "C++", ConditionalType.Xml),
+                        new SpecialOperationConfigParams("**/*.bas", "'", "VB", ConditionalType.VB),
+                        new SpecialOperationConfigParams("**/*.vb", "'", "VB", ConditionalType.VB),
                         new SpecialOperationConfigParams("**/*.xaml", "<!--", "C++", ConditionalType.Xml),
                         new SpecialOperationConfigParams("**/*.sln", "#-", "C++", ConditionalType.HashSignLineComment)
                     };
@@ -727,7 +743,7 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
         //          If so, read that files content as the exclude list.
         //          Otherwise returns an array containing the string value as its only entry.
         // Otherwise, interpret the token as an array and return the content.
-        private static IReadOnlyList<string> JTokenToCollection(JToken token, IFile sourceFile, string[] defaultSet)
+        private static IReadOnlyList<string> JTokenAsFilenameToReadOrArrayToCollection(JToken token, IFile sourceFile, string[] defaultSet)
         {
             if (token == null)
             {
@@ -750,6 +766,22 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                         return reader.ReadToEnd().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
                     }
                 }
+            }
+
+            return token.ArrayAsStrings();
+        }
+
+        private static IReadOnlyList<string> JTokenStringOrArrayToCollection(JToken token, string[] defaultSet)
+        {
+            if (token == null)
+            {
+                return defaultSet;
+            }
+
+            if (token.Type == JTokenType.String)
+            {
+                string tokenValue = token.ToString();
+                return new List<string>() { tokenValue };
             }
 
             return token.ArrayAsStrings();
@@ -825,12 +857,12 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                     continue;
                 }
 
-                IReadOnlyList<string> topIncludePattern = JTokenToCollection(source.Include, SourceFile, IncludePatternDefaults).ToList();
-                IReadOnlyList<string> topExcludePattern = JTokenToCollection(source.Exclude, SourceFile, ExcludePatternDefaults).ToList();
-                IReadOnlyList<string> topCopyOnlyPattern = JTokenToCollection(source.CopyOnly, SourceFile, CopyOnlyPatternDefaults).ToList();
+                IReadOnlyList<string> topIncludePattern = JTokenAsFilenameToReadOrArrayToCollection(source.Include, SourceFile, IncludePatternDefaults).ToList();
+                IReadOnlyList<string> topExcludePattern = JTokenAsFilenameToReadOrArrayToCollection(source.Exclude, SourceFile, ExcludePatternDefaults).ToList();
+                IReadOnlyList<string> topCopyOnlyPattern = JTokenAsFilenameToReadOrArrayToCollection(source.CopyOnly, SourceFile, CopyOnlyPatternDefaults).ToList();
                 FileSourceEvaluable topLevelPatterns = new FileSourceEvaluable(topIncludePattern, topExcludePattern, topCopyOnlyPattern);
 
-                Dictionary<string, string> fileRenames = new Dictionary<string, string>(source.Rename ?? RenameDefaults);
+                Dictionary<string, string> fileRenamesFromSource = new Dictionary<string, string>(source.Rename ?? RenameDefaults, StringComparer.Ordinal);
                 List<FileSourceEvaluable> modifierList = new List<FileSourceEvaluable>();
 
                 if (source.Modifiers != null)
@@ -839,9 +871,9 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                     {
                         if (string.IsNullOrEmpty(modifier.Condition) || Cpp2StyleEvaluatorDefinition.EvaluateFromString(EnvironmentSettings, modifier.Condition, rootVariableCollection))
                         {
-                            IReadOnlyList<string> modifierIncludes = JTokenToCollection(modifier.Include, SourceFile, new string[0]);
-                            IReadOnlyList<string> modifierExcludes = JTokenToCollection(modifier.Exclude, SourceFile, new string[0]);
-                            IReadOnlyList<string> modifierCopyOnly = JTokenToCollection(modifier.CopyOnly, SourceFile, new string[0]);
+                            IReadOnlyList<string> modifierIncludes = JTokenAsFilenameToReadOrArrayToCollection(modifier.Include, SourceFile, new string[0]);
+                            IReadOnlyList<string> modifierExcludes = JTokenAsFilenameToReadOrArrayToCollection(modifier.Exclude, SourceFile, new string[0]);
+                            IReadOnlyList<string> modifierCopyOnly = JTokenAsFilenameToReadOrArrayToCollection(modifier.CopyOnly, SourceFile, new string[0]);
                             FileSourceEvaluable modifierPatterns = new FileSourceEvaluable(modifierIncludes, modifierExcludes, modifierCopyOnly);
                             modifierList.Add(modifierPatterns);
 
@@ -849,7 +881,7 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                             {
                                 foreach (JProperty property in modifier.Rename.Properties())
                                 {
-                                    fileRenames[property.Name] = property.Value.Value<string>();
+                                    fileRenamesFromSource[property.Name] = property.Value.Value<string>();
                                 }
                             }
                         }
@@ -858,13 +890,13 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
 
                 string sourceDirectory = source.Source ?? "./";
                 string targetDirectory = source.Target ?? "./";
-                AugmentRenames(configFile, sourceDirectory, ref targetDirectory, resolvedNameParamValue, parameters, fileRenames);
+                IReadOnlyDictionary<string, string> allRenamesForSource = AugmentRenames(configFile, sourceDirectory, ref targetDirectory, resolvedNameParamValue, parameters, fileRenamesFromSource);
 
                 FileSourceMatchInfo sourceMatcher = new FileSourceMatchInfo(
                     sourceDirectory,
                     targetDirectory,
                     topLevelPatterns,
-                    fileRenames,
+                    allRenamesForSource,
                     modifierList);
                 sources.Add(sourceMatcher);
             }
@@ -877,14 +909,14 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                 FileSourceEvaluable topLevelPatterns = new FileSourceEvaluable(includePattern, excludePattern, copyOnlyPattern);
 
                 string targetDirectory = string.Empty;
-                Dictionary<string, string> fileRenames = new Dictionary<string, string>();
-                AugmentRenames(configFile, "./", ref targetDirectory, resolvedNameParamValue, parameters, fileRenames);
+                Dictionary<string, string> fileRenamesFromSource = new Dictionary<string, string>(StringComparer.Ordinal);
+                IReadOnlyDictionary<string, string> allRenamesForSource = AugmentRenames(configFile, "./", ref targetDirectory, resolvedNameParamValue, parameters, fileRenamesFromSource);
 
                 FileSourceMatchInfo sourceMatcher = new FileSourceMatchInfo(
                     "./",
                     "./",
                     topLevelPatterns,
-                    fileRenames,
+                    allRenamesForSource,
                     new List<FileSourceEvaluable>());
                 sources.Add(sourceMatcher);
             }
@@ -892,9 +924,9 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
             return sources;
         }
 
-        private void AugmentRenames(IFileSystemInfo configFile, string sourceDirectory, ref string targetDirectory, object resolvedNameParamValue, IParameterSet parameters, Dictionary<string, string> fileRenames)
+        private IReadOnlyDictionary<string, string> AugmentRenames(IFileSystemInfo configFile, string sourceDirectory, ref string targetDirectory, object resolvedNameParamValue, IParameterSet parameters, Dictionary<string, string> fileRenames)
         {
-            FileRenameGenerator.AugmentFileRenames(EnvironmentSettings, SourceName, configFile, sourceDirectory, ref targetDirectory, resolvedNameParamValue, parameters, fileRenames);
+            return FileRenameGenerator.AugmentFileRenames(EnvironmentSettings, SourceName, configFile, sourceDirectory, ref targetDirectory, resolvedNameParamValue, parameters, fileRenames);
         }
 
         private static ISymbolModel SetupDefaultNameSymbol(string sourceName)
@@ -969,12 +1001,15 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
                 Guids = source.ArrayAsGuids(nameof(config.Guids)),
                 Identity = source.ToString(nameof(config.Identity)),
                 Name = localizationModel?.Name ?? source.ToString(nameof(config.Name)),
-                ShortName = source.ToString(nameof(config.ShortName)),
+
                 SourceName = source.ToString(nameof(config.SourceName)),
                 PlaceholderFilename = source.ToString(nameof(config.PlaceholderFilename)),
                 EnvironmentSettings = environmentSettings,
                 GeneratorVersions = source.ToString(nameof(config.GeneratorVersions))
             };
+
+            JToken shortNameToken = source.Get<JToken>("ShortName");
+            config.ShortNameList = JTokenStringOrArrayToCollection(shortNameToken, new string[0]);
 
             config.Forms = SetupValueFormMapForTemplate(source);
 
@@ -1075,6 +1110,7 @@ namespace Microsoft.TemplateEngine.Orchestrator.RunnableProjects
             }
 
             config.PostActionModel = RunnableProjects.PostActionModel.ListFromJArray(source.Get<JArray>("PostActions"), localizationModel?.PostActions);
+            config.HasScriptRunningPostActions = config.PostActionModel.Any(x => x.ActionId == PostActionInfo.ProcessStartPostActionProcessorId);
             config.PrimaryOutputs = CreationPathModel.ListFromJArray(source.Get<JArray>(nameof(PrimaryOutputs)));
 
             // Custom operations at the global level

@@ -41,10 +41,13 @@
       </Item>
       <Item ItemId=";AddProjToSlnPostActionSucceeded" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Successfully added]A;    project(s): {0}]A;    to solution file: {1}]]></Val>
+          <Val><![CDATA[Successfully added]D;]A;    project(s): {0}]D;]A;    to solution file: {1}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Os projetos: {0}]A;    foram adicionados com êxito]A;    ao arquivo de solução: {1}]]></Val>
+            <Val><![CDATA[Os projetos: {0}]D;]A;    foram adicionados com êxito]D;]A;    ao arquivo de solução: {1}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Successfully added]A;    project(s): {0}]A;    to solution file: {1}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -61,7 +64,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Adding a package reference. Running dotnet add {0} package {1}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Adicionando uma referência de pacote. Executando o pacote {1} do dotnet add {0}]]></Val>
+            <Val><![CDATA[Adicionando uma referência de pacote. Executando dotnet add {0} package {1}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -70,7 +73,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Adding a package reference. Running dotnet add {0} package {1} --version {2}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Adicionando uma referência de pacote. Executando o pacote {1} --versão {2} do dotnet add {0}]]></Val>
+            <Val><![CDATA[Adicionando uma referência de pacote. Executando dotnet add {0} package {1} --version {2}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -131,10 +134,13 @@
       </Item>
       <Item ItemId=";AddRefPostActionSucceeded" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Successfully added]A;    reference: {0}]A;    to project file: {1}]]></Val>
+          <Val><![CDATA[Successfully added]D;]A;    reference: {0}]D;]A;    to project file: {1}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Êxito ao adicionar]A;    a referência: {0}]A;    ao arquivo de projeto: {1}]]></Val>
+            <Val><![CDATA[Êxito ao adicionar]D;]A;    a referência: {0}]D;]A;    ao arquivo de projeto: {1}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Successfully added]A;    reference: {0}]A;    to project file: {1}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -176,10 +182,13 @@
       </Item>
       <Item ItemId=";AliasCommandAfterExpansion" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[After expanding aliases, the command is:]A;    dotnet {0}]]></Val>
+          <Val><![CDATA[After expanding aliases, the command is:]D;]A;    dotnet {0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Após a expansão de aliases, o comando será:]A;    dotnet {0}]]></Val>
+            <Val><![CDATA[Após expandir os aliases, o comando será:]D;]A;    dotnet {0}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[After expanding aliases, the command is:]A;    dotnet {0}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -284,10 +293,13 @@
       </Item>
       <Item ItemId=";AliasShowErrorUnknownAlias" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Unknown alias name '{0}'.]A;Run 'dotnet {1} --show-aliases' with no args to show all aliases.]]></Val>
+          <Val><![CDATA[Unknown alias name '{0}'.]D;]A;Run 'dotnet {1} --show-aliases' with no args to show all aliases.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nome do alias desconhecido '{0}'.]A;Executar o 'dotnet {1} --mostrar-aliases' sem argumentos para mostrar todos os aliases.]]></Val>
+            <Val><![CDATA[Nome do alias desconhecido '{0}'.]D;]A;Execute 'dotnet {1} --show-aliases' sem argumentos para mostrar todos os aliases.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Unknown alias name '{0}'.]A;Run 'dotnet {1} --show-aliases' with no args to show all aliases.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -314,6 +326,15 @@
           <Val><![CDATA[First argument of an alias value must begin with a letter or digit.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[O primeiro argumento do valor de um alias deve começar com uma letra ou dígito.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";AllUpdatesApplyPrompt" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Apply updates ([A]5D;ll|[N]5D;one|[P]5D;rompt)?]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Aplicar atualizações ([T]5D;odas[N]5D;enhuma|[A]5D;visar)?]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -354,6 +375,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";ApplyUpdatesInvalidChoiceResponse" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Invalid choice...]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Opção inválida...]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";ArgsFileNotFound" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[The specified extra args file does not exist: {0}.]]></Val>
@@ -386,6 +416,24 @@
           <Val><![CDATA[Author: {0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Autor: {0}]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";Authoring_AmbiguousBestPrecedence" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Equal highest precedence values among the best template matches prevented unambiguously choosing a template to invoke.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Os valores iguais de maior precedência entre as melhores correspondências de modelo impediram a invocação de uma escolha não ambígua de um modelo.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";Authoring_AmbiguousChoiceParameterValue" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An ambiguous choice parameter value prevented unambiguously choosing a template to invoke.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Um valor de parâmetro de escolha ambígua impediu a invocação de uma escolha não ambígua de um modelo.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -446,10 +494,13 @@
       </Item>
       <Item ItemId=";CommandOutput" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Output from command:]A;{0}]]></Val>
+          <Val><![CDATA[Output from command:]D;]A;{0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Saída do comando:]A;{0}]]></Val>
+            <Val><![CDATA[Saída do comando:]D;]A;{0}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Output from command:]A;{0}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -458,6 +509,15 @@
           <Val><![CDATA[Command succeeded.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[O comando foi bem-sucedido.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";CommitHash" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[ Commit Hash: {0}]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[ Confirme o Hash: {0}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -518,10 +578,13 @@
       </Item>
       <Item ItemId=";CreateFailed" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Template "{0}" could not be created.]A;{1}]]></Val>
+          <Val><![CDATA[Template "{0}" could not be created.]D;]A;{1}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Não foi possível criar o modelo "{0}".]A;{1}]]></Val>
+            <Val><![CDATA[Não foi possível criar o modelo "{0}".]D;]A;{1}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Template "{0}" could not be created.]A;{1}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -548,6 +611,15 @@
           <Val><![CDATA[Default: {0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Padrão: {0}]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";DefaultValuePlusSwitchWithoutValueDefault" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Default: {0} / (*) {1}]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Padrão: {0} / (*) {1}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -590,10 +662,13 @@
       </Item>
       <Item ItemId=";ExtraArgsCommandAfterExpansion" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[After expanding the extra args files, the command is:]A;    dotnet {0}]]></Val>
+          <Val><![CDATA[After expanding the extra args files, the command is:]D;]A;    dotnet {0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Após expandir os arquivos de argumentos adicionais, o comando será:]A;    dotnet {0}]]></Val>
+            <Val><![CDATA[Após expandir os arquivos de argumentos adicionais, o comando será:]D;]A;    dotnet {0}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[After expanding the extra args files, the command is:]A;    dotnet {0}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -662,10 +737,13 @@
       </Item>
       <Item ItemId=";InstallFailed" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA["{0}" could not be installed.]A;{1}.]]></Val>
+          <Val><![CDATA["{0}" could not be installed.]D;]A;{1}.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Não foi possível instalar "{0}".]A;{1}.]]></Val>
+            <Val><![CDATA[Não foi possível instalar "{0}".]D;]A;{1}.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA["{0}" could not be installed.]A;{1}.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -683,6 +761,15 @@
           <Val><![CDATA["{0}" was installed successfully.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Êxito ao instalar "{0}".]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";InstalledItems" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Currently installed items:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Itens atualmente instalados:]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -707,19 +794,25 @@
       </Item>
       <Item ItemId=";InvalidParameterDefault" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[{0} {1}]A;    The default value '{1}' is not a valid value for {0}.]]></Val>
+          <Val><![CDATA[{0} {1}]D;]A;    The default value '{1}' is not a valid value for {0}.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[{0} {1}]A;    O valor padrão '{1}' não é um valor válido para {0}.]]></Val>
+            <Val><![CDATA[{0} {1}]D;]A;    O valor padrão '{1}' não é um valor válido para {0}.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[{0} {1}]A;    The default value '{1}' is not a valid value for {0}.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";InvalidParameterDetail" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[{0} {1}]A;    '{1}' is not a valid value for {0} ({2}).]]></Val>
+          <Val><![CDATA[{0} {1}]D;]A;    '{1}' is not a valid value for {0} ({2}).]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[{0} {1}]A;    '{1}' não é um valor válido para {0} ({2}).]]></Val>
+            <Val><![CDATA[{0} {1}]D;]A;    '{1}' não é um valor válido para {0} ({2}).]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[{0} {1}]A;    '{1}' is not a valid value for {0} ({2}).]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -752,10 +845,13 @@
       </Item>
       <Item ItemId=";LanguageParameter" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Specifies the language of the template to create.]]></Val>
+          <Val><![CDATA[Filters templates based on language and specifies the language of the template to create.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Especifica o idioma do modelo que será criado.]]></Val>
+            <Val><![CDATA[Filtra os modelos com base na linguagem e especifica a linguagem do modelo a ser criado.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Specifies the language of the template to create.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -876,6 +972,24 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";NoUpdatesFound" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[No updates found.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Nenhuma atualização encontrada.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";NuGetSourceHelp" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Specifies a NuGet source to use during install.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Especifica uma origem do NuGet a ser usada durante a instalação.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";OptionVariantAlreadyDefined" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Option variant {0} for canonical {1} was already defined for canonical {2}.]]></Val>
@@ -953,6 +1067,15 @@
           <Val><![CDATA[Parent]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Pai]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";PartialTemplateMatchSwitchesNotValidForAllMatches" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Some partially matched templates may not support these input switches:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Alguns modelos parcialmente correspondentes podem não dar suporte a estas opções de entrada:]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1067,12 +1190,12 @@
       </Item>
       <Item ItemId=";RunHelpForInformationAboutAcceptedParameters" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Run dotnet {0} --help for usage information.]A;See https://aka.ms/dotnet-install-templates to learn how to install additional template packs.]]></Val>
+          <Val><![CDATA[Run dotnet {0} --help for usage information.]D;]A;See https://aka.ms/dotnet-install-templates to learn how to install additional template packs.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Execute o dotnet {0} --help para obter informações de uso.]A;Consulte https://aka.ms/dotnet-install-templates para saber como instalar pacotes de modelo adicionais.]]></Val>
+            <Val><![CDATA[Execute dotnet {0} --help para obter informações de uso.]D;]A;Consulte https://aka.ms/dotnet-install-templates para saber como instalar pacotes de modelo adicionais.]]></Val>
           </Tgt>
           <Prev Cat="Text">
-            <Val><![CDATA[Run dotnet {0} --help for usage information.]]></Val>
+            <Val><![CDATA[Run dotnet {0} --help for usage information.]A;See https://aka.ms/dotnet-install-templates to learn how to install additional template packs.]]></Val>
           </Prev>
         </Str>
         <Disp Icon="Str" />
@@ -1091,6 +1214,15 @@
           <Val><![CDATA[Running 'dotnet restore' on {0}...]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Executando o 'dotnet restore' em {0}...]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";SettingsReadError" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Error reading the installed configuration, file may be corrupted. If this problem persists, try resetting with the `--debug:reinit' flag]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Erro ao ler a configuração instalada, o arquivo pode estar corrompido. Se o problema persistir, tente redefinir com o sinalizador '--debug:reinit']]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1127,6 +1259,33 @@
           <Val><![CDATA[Filters templates based on available types. Predefined values are "project", "item" or "other".]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Filtra os modelos com base nos tipos disponíveis. Os valores predefinidos são "project", "item" ou "other".]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";SingleTemplateGroupPartialMatchSwitchesNotValidForAllMatches" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The following parameter(s) or their value(s) are not valid in combination with other supplied parameters or their values:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Os seguintes parâmetros ou seus valores não são válidos em combinação com outros parâmetros fornecidos ou seus valores:]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";SingleUpdateApplyPrompt" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[{0} : update ([Y]5D;es|[N]5D;o)?]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[{0}: atualizar ([S]5D;im|[N]5D;ão)?]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";SwitchWithoutValueDefaultFootnote" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[* Indicates the value used if the switch is provided without a value.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[* Indica o valor usado se a opção for fornecida sem um valor.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1172,6 +1331,15 @@
           <Val><![CDATA[{0} matches the specified name, but has been excluded by the --type parameter. Remove or change the --type parameter to use that template.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[{0} coincide com o nome especificado, mas foi excluído pelo parâmetro --type. Remova ou altere o parâmetro --type para usar esse modelo.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";TemplateUpdateError" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An error occured updating templates for: {0}]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Ocorreu um erro ao atualizar modelos para: {0}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1239,6 +1407,24 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";UpdateCheckError" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An error occured checking for {0} template updates.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Ocorreu um erro ao buscar por atualizações do modelo de {0}.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";UpdateCheckerNotAvailable" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[No update checker(s) for the following:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Nenhum verificador de atualização para o seguinte:]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";UpdateHelp" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Update matching templates.]]></Val>
@@ -1248,11 +1434,29 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";UpdatesAvailableListHeader" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Updates are available for the following:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[As atualizações estão disponíveis para o seguinte:]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";ValueSpecifiedForValuelessParameter" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Value specified for valueless parameter: {0}.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Valor especificado para o parâmetro sem valor: {0}.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";Version" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[ Version:     {0}]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[ Versão: {0}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1281,7 +1485,7 @@
     <Disp Icon="Ver" Disp="true" LocTbl="false" Path=" \ ;Version \ 8 \ 0" />
     <Item ItemId=";AssemblyVersion" ItemType="0" PsrId="211" Leaf="true">
       <Str Cat="Text" DevLk="true">
-        <Val><![CDATA[1.0.0.300]]></Val>
+        <Val><![CDATA[1.0.1.45932]]></Val>
       </Str>
       <Disp Icon="Str" />
     </Item>
@@ -1314,7 +1518,7 @@
     </Item>
     <Item ItemId=";FileVersion" ItemType="0" PsrId="211" Leaf="true">
       <Str Cat="Text" DevLk="true">
-        <Val><![CDATA[1.0.0.300]]></Val>
+        <Val><![CDATA[1.0.1.45932]]></Val>
       </Str>
       <Disp Icon="Str" />
     </Item>
@@ -1326,10 +1530,13 @@
     </Item>
     <Item ItemId=";LegalCopyright" ItemType="0" PsrId="211" Leaf="true">
       <Str Cat="Text">
-        <Val><![CDATA[Copyright © Microsoft Corporation]]></Val>
+        <Val><![CDATA[© Microsoft Corporation. All rights reserved.]]></Val>
         <Tgt Cat="Text" Stat="Loc" Orig="New">
-          <Val><![CDATA[Copyright © Microsoft Corporation]]></Val>
+          <Val><![CDATA[© Microsoft Corporation. Todos os direitos reservados.]]></Val>
         </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Copyright © Microsoft Corporation]]></Val>
+        </Prev>
       </Str>
       <Disp Icon="Str" />
     </Item>
@@ -1350,7 +1557,7 @@
     </Item>
     <Item ItemId=";ProductVersion" ItemType="0" PsrId="211" Leaf="true">
       <Str Cat="Text" DevLk="true">
-        <Val><![CDATA[1.0.0-beta2-20170725-300+300.8433c1579f25dbb84e0b0901e75b6a488e80a9f6]]></Val>
+        <Val><![CDATA[1.0.1-beta3-20180316-1487702+1868.d7f133f499ef5f3c6550e0d8a8f197fff43a3767]]></Val>
       </Str>
       <Disp Icon="Str" />
     </Item>

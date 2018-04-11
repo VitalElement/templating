@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Abstractions.Mount;
@@ -64,7 +65,7 @@ namespace Microsoft.TemplateEngine.Cli
             }
         }
 
-        public static IInstaller Installer { get; set; }
+        internal static Installer Installer { get; set; }
 
         public string CommandName { get; }
 
@@ -79,7 +80,57 @@ namespace Microsoft.TemplateEngine.Cli
             return Run(commandName, host, telemetryLogger, onFirstRun, args, null);
         }
 
+        private static readonly Guid _entryMutexGuid = new Guid("5CB26FD1-32DB-4F4C-B3DC-49CFD61633D2");
+        private static Mutex _entryMutex;
+
+        private static Mutex EnsureEntryMutex(string hivePath, ITemplateEngineHost host)
+        {
+            if (_entryMutex == null)
+            {
+                string _entryMutexIdentity;
+
+                // this effectively mimics EngineEnvironmentSettings.BaseDir, which is not initialized when this is needed.
+                if (!string.IsNullOrEmpty(hivePath))
+                {
+                    _entryMutexIdentity = $"{_entryMutexGuid.ToString()}-{hivePath}".Replace("\\", "_").Replace("/", "_");
+                }
+                else
+                {
+                    _entryMutexIdentity = $"{_entryMutexGuid.ToString()}-{host.HostIdentifier}-{host.Version}".Replace("\\", "_").Replace("/", "_");
+                }
+
+                _entryMutex = new Mutex(false, _entryMutexIdentity);
+            }
+
+            return _entryMutex;
+        }
+
         public static int Run(string commandName, ITemplateEngineHost host, ITelemetryLogger telemetryLogger, Action<IEngineEnvironmentSettings, IInstaller> onFirstRun, string[] args, string hivePath)
+        {
+            if (!args.Any(x => string.Equals(x, "--debug:ephemeral-hive")))
+            {
+                EnsureEntryMutex(hivePath, host);
+
+                if (!_entryMutex.WaitOne())
+                {
+                    return -1;
+                }
+            }
+
+            try
+            {
+                return ActualRun(commandName, host, telemetryLogger, onFirstRun, args, hivePath);
+            }
+            finally
+            {
+                if (_entryMutex != null)
+                {
+                    _entryMutex.ReleaseMutex();
+                }
+            }
+        }
+
+        private static int ActualRun(string commandName, ITemplateEngineHost host, ITelemetryLogger telemetryLogger, Action<IEngineEnvironmentSettings, IInstaller> onFirstRun, string[] args, string hivePath)
         {
             if (args.Any(x => string.Equals(x, "--debug:version", StringComparison.Ordinal)))
             {
@@ -295,7 +346,8 @@ namespace Microsoft.TemplateEngine.Cli
         {
             _telemetryLogger.TrackEvent(CommandName + TelemetryConstants.InstallEventSuffix, new Dictionary<string, string> { { TelemetryConstants.ToInstallCount, _commandInput.ToInstallList.Count.ToString() } });
 
-            Installer.InstallPackages(_commandInput.ToInstallList);
+            bool allowDevInstall = _commandInput.HasDebuggingFlag("--dev:install");
+            Installer.InstallPackages(_commandInput.ToInstallList, _commandInput.InstallNuGetSourceList, allowDevInstall);
 
             //TODO: When an installer that directly calls into NuGet is available,
             //  return a more accurate representation of the outcome of the operation
@@ -310,8 +362,8 @@ namespace Microsoft.TemplateEngine.Cli
                 HelpForTemplateResolution.DisplayInvalidParameters(invalidParams);
                 if (_commandInput.IsHelpFlagSpecified)
                 {
-                    _telemetryLogger.TrackEvent(CommandName + "-Help");
-                    HelpForTemplateResolution.ShowUsageHelp(_commandInput);
+                    // this code path doesn't go through the full help & usage stack, so needs it's own call to ShowUsageHelp().
+                    HelpForTemplateResolution.ShowUsageHelp(_commandInput, _telemetryLogger);
                 }
                 else
                 {
@@ -319,11 +371,6 @@ namespace Microsoft.TemplateEngine.Cli
                 }
 
                 return CreationResultStatus.InvalidParamValues;
-            }
-
-            if (_commandInput.ToInstallList != null && _commandInput.ToInstallList.Count > 0 && _commandInput.ToInstallList[0] != null)
-            {
-                Installer.InstallPackages(_commandInput.ToInstallList.Select(x => x.Split(new[] { "::" }, StringSplitOptions.None)[0]));
             }
 
             if (_commandInput.ToUninstallList != null)
@@ -367,7 +414,6 @@ namespace Microsoft.TemplateEngine.Cli
             }
 
             //No other cases specified, we've fallen through to "Usage help + List"
-            HelpForTemplateResolution.ShowUsageHelp(_commandInput);
             TemplateListResolutionResult templateResolutionResult = QueryForTemplateMatches();
             HelpForTemplateResolution.CoordinateHelpAndUsageDisplay(templateResolutionResult, EnvironmentSettings, _commandInput, _hostDataLoader, _telemetryLogger, _templateCreator, _defaultLanguage);
 
@@ -491,8 +537,9 @@ namespace Microsoft.TemplateEngine.Cli
                 return HelpForTemplateResolution.CoordinateHelpAndUsageDisplay(templateResolutionResult, EnvironmentSettings, _commandInput, _hostDataLoader, _telemetryLogger, _templateCreator, _defaultLanguage);
             }
 
+            TemplateListResolutionResult.SingularInvokableMatchCheckStatus singleMatchStatus = TemplateListResolutionResult.SingularInvokableMatchCheckStatus.None;
             if (templateResolutionResult.TryGetUnambiguousTemplateGroupToUse(out IReadOnlyList<ITemplateMatchInfo> unambiguousTemplateGroup)
-                && templateResolutionResult.TryGetSingularInvokableMatch(out ITemplateMatchInfo templateToInvoke)
+                && templateResolutionResult.TryGetSingularInvokableMatch(out ITemplateMatchInfo templateToInvoke, out singleMatchStatus)
                 && !unambiguousTemplateGroup.Any(x => x.HasParameterMismatch())
                 && !unambiguousTemplateGroup.Any(x => x.HasAmbiguousParameterValueMatch()))
             {
@@ -505,6 +552,15 @@ namespace Microsoft.TemplateEngine.Cli
             }
             else
             {
+                if (singleMatchStatus == TemplateListResolutionResult.SingularInvokableMatchCheckStatus.AmbiguousChoice)
+                {
+                    EnvironmentSettings.Host.LogDiagnosticMessage(LocalizableStrings.Authoring_AmbiguousChoiceParameterValue, "Authoring");
+                }
+                else if (singleMatchStatus == TemplateListResolutionResult.SingularInvokableMatchCheckStatus.AmbiguousPrecedence)
+                {
+                    EnvironmentSettings.Host.LogDiagnosticMessage(LocalizableStrings.Authoring_AmbiguousBestPrecedence, "Authoring");
+                }
+
                 return HelpForTemplateResolution.CoordinateHelpAndUsageDisplay(templateResolutionResult, EnvironmentSettings, _commandInput, _hostDataLoader, _telemetryLogger, _templateCreator, _defaultLanguage);
             }
         }
@@ -676,7 +732,21 @@ namespace Microsoft.TemplateEngine.Cli
             get
             {
                 IReadOnlyCollection<ITemplateMatchInfo> allTemplates = TemplateListResolver.PerformAllTemplatesQuery(_settingsLoader.UserTemplateCache.TemplateInfo, _hostDataLoader);
-                HashSet<string> allShortNames = new HashSet<string>(allTemplates.Select(x => x.Info.ShortName));
+
+                HashSet<string> allShortNames = new HashSet<string>(StringComparer.Ordinal);
+
+                foreach (ITemplateMatchInfo templateMatchInfo in allTemplates)
+                {
+                    if (templateMatchInfo.Info is IShortNameList templateWithShortNameList)
+                    {
+                        allShortNames.UnionWith(templateWithShortNameList.ShortNameList);
+                    }
+                    else
+                    {
+                        allShortNames.Add(templateMatchInfo.Info.ShortName);
+                    }
+                }
+
                 return allShortNames;
             }
         }

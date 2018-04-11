@@ -41,10 +41,13 @@
       </Item>
       <Item ItemId=";AddProjToSlnPostActionSucceeded" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Successfully added]A;    project(s): {0}]A;    to solution file: {1}]]></Val>
+          <Val><![CDATA[Successfully added]D;]A;    project(s): {0}]D;]A;    to solution file: {1}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[プロジェクト: {0} を]A;    ソリューションファイル: {1} に]A;    正常に追加しました]]></Val>
+            <Val><![CDATA[プロジェクト {0} が]D;]A;    ソリューション ファイル {1} に]D;]A;    正常に追加されました]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Successfully added]A;    project(s): {0}]A;    to solution file: {1}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -131,10 +134,13 @@
       </Item>
       <Item ItemId=";AddRefPostActionSucceeded" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Successfully added]A;    reference: {0}]A;    to project file: {1}]]></Val>
+          <Val><![CDATA[Successfully added]D;]A;    reference: {0}]D;]A;    to project file: {1}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[正常に追加された]A;    参照: {0}]A;    追加先のプロジェクト ファイル: {1}]]></Val>
+            <Val><![CDATA[参照 {0} が]D;]A;    プロジェクト ファイル {1} に]D;]A;    正常に追加されました]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Successfully added]A;    reference: {0}]A;    to project file: {1}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -176,10 +182,13 @@
       </Item>
       <Item ItemId=";AliasCommandAfterExpansion" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[After expanding aliases, the command is:]A;    dotnet {0}]]></Val>
+          <Val><![CDATA[After expanding aliases, the command is:]D;]A;    dotnet {0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[エイリアスを展開した後のコマンドは次のとおりです:]A;    dotnet {0}]]></Val>
+            <Val><![CDATA[エイリアスを展開した後のコマンドは次のとおりです:]D;]A;    dotnet {0}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[After expanding aliases, the command is:]A;    dotnet {0}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -284,10 +293,13 @@
       </Item>
       <Item ItemId=";AliasShowErrorUnknownAlias" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Unknown alias name '{0}'.]A;Run 'dotnet {1} --show-aliases' with no args to show all aliases.]]></Val>
+          <Val><![CDATA[Unknown alias name '{0}'.]D;]A;Run 'dotnet {1} --show-aliases' with no args to show all aliases.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[エイリアス名 '{0}' は不明です。]A;引数を指定せずに 'dotnet {1} --show-aliases' を実行すると、すべてのエイリアスが表示されます。]]></Val>
+            <Val><![CDATA[エイリアス名 '{0}' は不明です。]D;]A;引数を指定せずに 'dotnet {1} --show-aliases' を実行すると、すべてのエイリアスが表示されます。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Unknown alias name '{0}'.]A;Run 'dotnet {1} --show-aliases' with no args to show all aliases.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -314,6 +326,15 @@
           <Val><![CDATA[First argument of an alias value must begin with a letter or digit.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[エイリアス値の最初の引数は、先頭が文字か数字でなければなりません。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";AllUpdatesApplyPrompt" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Apply updates ([A]5D;ll|[N]5D;one|[P]5D;rompt)?]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[更新を適用しますか ([A]5D;ll|[N]5D;one|[P]5D;rompt)?]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -354,6 +375,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";ApplyUpdatesInvalidChoiceResponse" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Invalid choice...]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[選択が無効です...]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";ArgsFileNotFound" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[The specified extra args file does not exist: {0}.]]></Val>
@@ -386,6 +416,24 @@
           <Val><![CDATA[Author: {0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[作成者: {0}]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";Authoring_AmbiguousBestPrecedence" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Equal highest precedence values among the best template matches prevented unambiguously choosing a template to invoke.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[最適なテンプレートの一致で最高優先順位の値が等しいため、呼び出すテンプレートが厳密に選択されませんでした。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";Authoring_AmbiguousChoiceParameterValue" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An ambiguous choice parameter value prevented unambiguously choosing a template to invoke.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[選択パラメーターの値があいまいであるため、呼び出すテンプレートが厳密に選択されませんでした。]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -446,10 +494,13 @@
       </Item>
       <Item ItemId=";CommandOutput" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Output from command:]A;{0}]]></Val>
+          <Val><![CDATA[Output from command:]D;]A;{0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[コマンドからの出力:]A;{0}]]></Val>
+            <Val><![CDATA[コマンドからの出力:]D;]A;{0}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Output from command:]A;{0}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -458,6 +509,15 @@
           <Val><![CDATA[Command succeeded.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[コマンドが正常に実行されました。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";CommitHash" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[ Commit Hash: {0}]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[ ハッシュをコミットします: {0}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -518,10 +578,13 @@
       </Item>
       <Item ItemId=";CreateFailed" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Template "{0}" could not be created.]A;{1}]]></Val>
+          <Val><![CDATA[Template "{0}" could not be created.]D;]A;{1}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[テンプレート "{0}" を作成できませんでした。]A;{1}]]></Val>
+            <Val><![CDATA[テンプレート "{0}" を作成できませんでした。]D;]A;{1}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Template "{0}" could not be created.]A;{1}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -548,6 +611,15 @@
           <Val><![CDATA[Default: {0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[既定: {0}]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";DefaultValuePlusSwitchWithoutValueDefault" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Default: {0} / (*) {1}]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[既定: {0} / (*) {1}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -590,10 +662,13 @@
       </Item>
       <Item ItemId=";ExtraArgsCommandAfterExpansion" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[After expanding the extra args files, the command is:]A;    dotnet {0}]]></Val>
+          <Val><![CDATA[After expanding the extra args files, the command is:]D;]A;    dotnet {0}]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[追加の引数ファイルを展開した後のコマンドは次のとおりです:]A;    dotnet {0}]]></Val>
+            <Val><![CDATA[追加の引数ファイルを展開した後のコマンドは次のとおりです:]D;]A;    dotnet {0}]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[After expanding the extra args files, the command is:]A;    dotnet {0}]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -662,10 +737,13 @@
       </Item>
       <Item ItemId=";InstallFailed" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA["{0}" could not be installed.]A;{1}.]]></Val>
+          <Val><![CDATA["{0}" could not be installed.]D;]A;{1}.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA["{0}" をインストールできませんでした。]A;{1}。]]></Val>
+            <Val><![CDATA["{0}" をインストールできませんでした。]D;]A;{1}。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA["{0}" could not be installed.]A;{1}.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -683,6 +761,15 @@
           <Val><![CDATA["{0}" was installed successfully.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA["{0}" が正常にインストールされました。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";InstalledItems" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Currently installed items:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[現在インストールされている項目:]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -707,19 +794,25 @@
       </Item>
       <Item ItemId=";InvalidParameterDefault" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[{0} {1}]A;    The default value '{1}' is not a valid value for {0}.]]></Val>
+          <Val><![CDATA[{0} {1}]D;]A;    The default value '{1}' is not a valid value for {0}.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[{0} {1}]A;    既定値 '{1}' は {0} の有効な値ではありません。]]></Val>
+            <Val><![CDATA[{0} {1}]D;]A;    既定値 '{1}' は {0} の有効な値ではありません。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[{0} {1}]A;    The default value '{1}' is not a valid value for {0}.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";InvalidParameterDetail" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[{0} {1}]A;    '{1}' is not a valid value for {0} ({2}).]]></Val>
+          <Val><![CDATA[{0} {1}]D;]A;    '{1}' is not a valid value for {0} ({2}).]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[{0} {1}]A;    '{1}' は {0} の有効な値ではありません ({2})。]]></Val>
+            <Val><![CDATA[{0} {1}]D;]A;    '{1}' は {0} の有効な値ではありません ({2})。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[{0} {1}]A;    '{1}' is not a valid value for {0} ({2}).]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -752,10 +845,13 @@
       </Item>
       <Item ItemId=";LanguageParameter" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Specifies the language of the template to create.]]></Val>
+          <Val><![CDATA[Filters templates based on language and specifies the language of the template to create.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[作成するテンプレートの言語を指定します。]]></Val>
+            <Val><![CDATA[言語に基づいてテンプレートをフィルター処理し、作成するテンプレートの言語を指定します。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Specifies the language of the template to create.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -876,6 +972,24 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";NoUpdatesFound" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[No updates found.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[更新は見つかりませんでした。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";NuGetSourceHelp" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Specifies a NuGet source to use during install.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[インストール中に使用する NuGet ソースを 1 つ指定します。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";OptionVariantAlreadyDefined" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Option variant {0} for canonical {1} was already defined for canonical {2}.]]></Val>
@@ -953,6 +1067,15 @@
           <Val><![CDATA[Parent]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[親]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";PartialTemplateMatchSwitchesNotValidForAllMatches" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Some partially matched templates may not support these input switches:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[部分的に一致するテンプレートのいくつかは、これらの入力スイッチをサポートしていません。]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1067,12 +1190,12 @@
       </Item>
       <Item ItemId=";RunHelpForInformationAboutAcceptedParameters" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Run dotnet {0} --help for usage information.]A;See https://aka.ms/dotnet-install-templates to learn how to install additional template packs.]]></Val>
+          <Val><![CDATA[Run dotnet {0} --help for usage information.]D;]A;See https://aka.ms/dotnet-install-templates to learn how to install additional template packs.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[使用方法の情報を確認するには、dotnet {0} --help を実行します。]A;その他のテンプレート パックのインストール方法については、https://aka.ms/dotnet-install-templates をご覧ください。]]></Val>
+            <Val><![CDATA[使用方法の情報を確認するには、dotnet {0} --help を実行します。]D;]A;その他のテンプレート パックのインストール方法については、https://aka.ms/dotnet-install-templates をご覧ください。]]></Val>
           </Tgt>
           <Prev Cat="Text">
-            <Val><![CDATA[Run dotnet {0} --help for usage information.]]></Val>
+            <Val><![CDATA[Run dotnet {0} --help for usage information.]A;See https://aka.ms/dotnet-install-templates to learn how to install additional template packs.]]></Val>
           </Prev>
         </Str>
         <Disp Icon="Str" />
@@ -1091,6 +1214,15 @@
           <Val><![CDATA[Running 'dotnet restore' on {0}...]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA['dotnet restore' を {0} で実行しています...]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";SettingsReadError" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Error reading the installed configuration, file may be corrupted. If this problem persists, try resetting with the `--debug:reinit' flag]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[インストール済みの構成の読み取りでエラーが発生しました。ファイルが壊れている可能性があります。この問題が引き続き発生する場合は、'--debug:reinit' フラグを使用してリセットをお試しください]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1127,6 +1259,33 @@
           <Val><![CDATA[Filters templates based on available types. Predefined values are "project", "item" or "other".]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[使用可能な種類に基づいてテンプレートをフィルター処理します。定義済みの値は、"project"、"item"、"other" です。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";SingleTemplateGroupPartialMatchSwitchesNotValidForAllMatches" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The following parameter(s) or their value(s) are not valid in combination with other supplied parameters or their values:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[次のパラメーターまたはその値は、指定された他のパラメーターまたはその値と組み合わせて使用すると無効です。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";SingleUpdateApplyPrompt" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[{0} : update ([Y]5D;es|[N]5D;o)?]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[{0} : 更新しますか ([Y]5D;es |[N]5D;o)?]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";SwitchWithoutValueDefaultFootnote" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[* Indicates the value used if the switch is provided without a value.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[* 値なしでスイッチが指定されている場合に使用される値を示します。]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1172,6 +1331,15 @@
           <Val><![CDATA[{0} matches the specified name, but has been excluded by the --type parameter. Remove or change the --type parameter to use that template.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[{0} は指定された名前に一致しますが、--type パラメーターで除外されています。このテンプレートを使用するには、--type パラメーターを削除または変更してください。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";TemplateUpdateError" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An error occured updating templates for: {0}]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[次のテンプレートの更新でエラーが発生しました: {0}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1239,6 +1407,24 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";UpdateCheckError" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An error occured checking for {0} template updates.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[{0} テンプレートの更新の確認でエラーが発生しました。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";UpdateCheckerNotAvailable" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[No update checker(s) for the following:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[次に対する更新チェッカーがありません。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";UpdateHelp" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Update matching templates.]]></Val>
@@ -1248,11 +1434,29 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";UpdatesAvailableListHeader" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Updates are available for the following:]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[次に対する更新が使用できます。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";ValueSpecifiedForValuelessParameter" ItemType="0" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Value specified for valueless parameter: {0}.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[値を持たないパラメーターに値が指定されました: {0}。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";Version" ItemType="0" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[ Version:     {0}]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[ バージョン:     {0}]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1281,7 +1485,7 @@
     <Disp Icon="Ver" Disp="true" LocTbl="false" Path=" \ ;Version \ 8 \ 0" />
     <Item ItemId=";AssemblyVersion" ItemType="0" PsrId="211" Leaf="true">
       <Str Cat="Text" DevLk="true">
-        <Val><![CDATA[1.0.0.300]]></Val>
+        <Val><![CDATA[1.0.1.45932]]></Val>
       </Str>
       <Disp Icon="Str" />
     </Item>
@@ -1314,7 +1518,7 @@
     </Item>
     <Item ItemId=";FileVersion" ItemType="0" PsrId="211" Leaf="true">
       <Str Cat="Text" DevLk="true">
-        <Val><![CDATA[1.0.0.300]]></Val>
+        <Val><![CDATA[1.0.1.45932]]></Val>
       </Str>
       <Disp Icon="Str" />
     </Item>
@@ -1326,10 +1530,13 @@
     </Item>
     <Item ItemId=";LegalCopyright" ItemType="0" PsrId="211" Leaf="true">
       <Str Cat="Text">
-        <Val><![CDATA[Copyright © Microsoft Corporation]]></Val>
+        <Val><![CDATA[© Microsoft Corporation. All rights reserved.]]></Val>
         <Tgt Cat="Text" Stat="Loc" Orig="New">
-          <Val><![CDATA[Copyright © Microsoft Corporation]]></Val>
+          <Val><![CDATA[© Microsoft Corporation. All rights reserved.]]></Val>
         </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Copyright © Microsoft Corporation]]></Val>
+        </Prev>
       </Str>
       <Disp Icon="Str" />
     </Item>
@@ -1350,7 +1557,7 @@
     </Item>
     <Item ItemId=";ProductVersion" ItemType="0" PsrId="211" Leaf="true">
       <Str Cat="Text" DevLk="true">
-        <Val><![CDATA[1.0.0-beta2-20170725-300+300.8433c1579f25dbb84e0b0901e75b6a488e80a9f6]]></Val>
+        <Val><![CDATA[1.0.1-beta3-20180316-1487702+1868.d7f133f499ef5f3c6550e0d8a8f197fff43a3767]]></Val>
       </Str>
       <Disp Icon="Str" />
     </Item>

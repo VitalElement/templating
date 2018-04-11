@@ -1,12 +1,13 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.TemplateEngine.Utils;
 
 namespace Microsoft.TemplateEngine.Cli.PostActionProcessors
 {
     public class ProcessStartPostActionProcessor : IPostActionProcessor
     {
-        public static readonly Guid ActionProcessorId = new Guid("3A7C4B45-1F5D-4A30-959A-51B88E82B5D2");
+        public static readonly Guid ActionProcessorId = PostActionInfo.ProcessStartPostActionProcessorId;
 
         public Guid Id => ActionProcessorId;
 
@@ -15,11 +16,21 @@ namespace Microsoft.TemplateEngine.Cli.PostActionProcessors
             bool allSucceeded = true;
             actionConfig.Args.TryGetValue("args", out string args);
 
+            bool redirectStandardOutput = true;
+
+            // By default, standard out is redirected.
+            // Only redirect when the configuration says "redirectStandardOutput = false"
+            if (actionConfig.Args.TryGetValue("redirectStandardOutput", out string redirectStandardOutputString)
+                    && string.Equals(redirectStandardOutputString, "false", StringComparison.OrdinalIgnoreCase))
+            {
+                redirectStandardOutput = false;
+            }
+
             settings.Host.LogMessage(string.Format(LocalizableStrings.RunningCommand, actionConfig.Args["executable"] + " " + args));
             System.Diagnostics.Process commandResult = System.Diagnostics.Process.Start(new ProcessStartInfo
             {
                 RedirectStandardError = true,
-                RedirectStandardOutput = true,
+                RedirectStandardOutput = redirectStandardOutput,
                 UseShellExecute = false,
                 CreateNoWindow = false,
                 WorkingDirectory = outputBasePath,

@@ -464,6 +464,24 @@ namespace Microsoft.TemplateEngine.Cli {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Equal highest precedence values among the best template matches prevented unambiguously choosing a template to invoke..
+        /// </summary>
+        public static string Authoring_AmbiguousBestPrecedence {
+            get {
+                return ResourceManager.GetString("Authoring_AmbiguousBestPrecedence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An ambiguous choice parameter value prevented unambiguously choosing a template to invoke..
+        /// </summary>
+        public static string Authoring_AmbiguousChoiceParameterValue {
+            get {
+                return ResourceManager.GetString("Authoring_AmbiguousChoiceParameterValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid format for input locale: &quot;{0}&quot;. Example valid formats: [en] [en-US]..
         /// </summary>
         public static string BadLocaleError {
@@ -633,6 +651,15 @@ namespace Microsoft.TemplateEngine.Cli {
         public static string DefaultValue {
             get {
                 return ResourceManager.GetString("DefaultValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default: {0} / (*) {1}.
+        /// </summary>
+        public static string DefaultValuePlusSwitchWithoutValueDefault {
+            get {
+                return ResourceManager.GetString("DefaultValuePlusSwitchWithoutValueDefault", resourceCulture);
             }
         }
         
@@ -983,6 +1010,15 @@ namespace Microsoft.TemplateEngine.Cli {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies a NuGet source to use during install..
+        /// </summary>
+        public static string NuGetSourceHelp {
+            get {
+                return ResourceManager.GetString("NuGetSourceHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options:.
         /// </summary>
         public static string Options {
@@ -1268,6 +1304,15 @@ namespace Microsoft.TemplateEngine.Cli {
         public static string SingleUpdateApplyPrompt {
             get {
                 return ResourceManager.GetString("SingleUpdateApplyPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * Indicates the value used if the switch is provided without a value..
+        /// </summary>
+        public static string SwitchWithoutValueDefaultFootnote {
+            get {
+                return ResourceManager.GetString("SwitchWithoutValueDefaultFootnote", resourceCulture);
             }
         }
         
